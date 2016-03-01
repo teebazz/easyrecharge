@@ -52,7 +52,7 @@ class AuthController extends Controller {
 		//dd($request->all());
 		$password = Hash::make($request['password']);
 		$data = [
-			'status' => 'active',
+			//'status' => 'active',
 			'name'   => $name,
 			'email'  => $email,
 			'phone'  => $phone,
