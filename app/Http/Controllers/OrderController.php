@@ -50,6 +50,7 @@ class OrderController extends Controller {
                 'amount'		 => $request['amount'],
                 'method'		 => 'online',
                 'phone'		 	 => $request['phone'],
+                'network'		 => $request['network'],
                 'status'		 => 'pending'
             ];
             $insert = DB::table('transactions')->insert($vary);
