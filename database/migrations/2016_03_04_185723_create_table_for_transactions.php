@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransaction extends Migration {
+class CreateTableForTransactions extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,8 @@ class CreateTransaction extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('transaction', function (Blueprint $table) {
+		Schema::create('transactions', function(Blueprint $table)
+		{
 			$table->increments('id');
 			$table->string('transaction_id',30)->unique;
 			$table->string('status', 20);
@@ -33,7 +34,7 @@ class CreateTransaction extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('transaction');
+		Schema::drop('transactions');
 	}
 
 }
