@@ -37,24 +37,28 @@ class OrderController extends Controller {
 
     public function confirmPay(Request $request)
     {
-        $authVals	    	= Auth::user();
-        $data['trans']		= rand(0,999999999);
-        $data['network']	= $request['network'];
-        $data['type']		= $request['type'];
-        $data['amount']		= $request['amount'];
-        $data['phone']		= $request['phone'];
-        if(isset($request['onlinePay'])){
-            $vary = [
-                'transaction_id' => $data['trans'],
-                'user_id'		 => $authVals->id,
-                'amount'		 => $request['amount'],
-                'method'		 => 'online',
-                'phone'		 	 => $request['phone'],
-                'network'		 => $request['network'],
-                'status'		 => 'pending'
-            ];
-            $insert = DB::table('transactions')->insert($vary);
-            dd($data);
+            if (Auth::user()) {
+            $authVals	    	= Auth::user();
+            $data['trans']		= rand(0,999999999);
+            $data['network']	= $request['network'];
+            $data['type']		= $request['type'];
+            $data['amount']		= $request['amount'];
+            $data['phone']		= $request['phone'];
+            if(isset($request['onlinePay'])){
+                $vary = [
+                    'transaction_id' => $data['trans'],
+                    'user_id'		 => $authVals->id,
+                    'amount'		 => $request['amount'],
+                    'method'		 => 'online',
+                    'phone'		 	 => $request['phone'],
+                    'network'		 => $request['network'],
+                    'status'		 => 'pending'
+                ];
+                $insert = DB::table('transactions')->insert($vary);
+                dd($data);
+            }
+        }else{
+            return redirect::to('/');
         }
     }
 

@@ -12,11 +12,12 @@ class CreateTransaction extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('transactions', function (Blueprint $table) {
+		Schema::create('transaction', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('transaction_id',30)->unique;
 			$table->string('status', 20);
 			$table->string('method',30);
+			$table->string('network',30);
 			$table->string('description',200);
 			$table->rememberToken();
 			$table->timestamps();
@@ -32,7 +33,7 @@ class CreateTransaction extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('transactions');
+		Schema::drop('transaction');
 	}
 
 }
